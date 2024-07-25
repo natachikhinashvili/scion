@@ -11,7 +11,7 @@ class CarDeduplicator:
         self.df = pd.read_excel(self.file_path)
     
     def remove_duplicates(self):
-        removecolumns = self.detect_color()
+        removecolumns = self.ignore_columns
         columns_to_check = [col for col in self.df.columns if col not in removecolumns]
         self.df = self.df.drop_duplicates(subset=columns_to_check)
     
@@ -32,6 +32,12 @@ class ToyotaDeduplicator(CarDeduplicator):
         self.file_path = file_path 
         ignore_columns = self.detect_color()
         super().__init__(file_path, ignore_columns)
+    
+
+    def remove_duplicates(self):
+        removecolumns = self.detect_color()
+        columns_to_check = [col for col in self.df.columns if col not in removecolumns]
+        self.df = self.df.drop_duplicates(subset=columns_to_check)
     
     def detect_color(self):
         wb = openpyxl.load_workbook(self.file_path)
