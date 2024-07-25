@@ -1,5 +1,13 @@
 # scion
 
+### How to run
+```
+git clone https://github.com/natachikhinashvili/scion.git
+cd scion
+pip install -r requirements.txt
+python3 car.py
+```
+
 ## Used polymorphism:
 
 ### CarDeduplicator
